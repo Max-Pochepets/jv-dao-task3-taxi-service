@@ -45,12 +45,13 @@ public class Driver {
             return false;
         }
         Driver driver = (Driver) o;
-        return Objects.equals(name, driver.name)
+        return Objects.equals(id, driver.id)
+               && Objects.equals(name, driver.name)
                && Objects.equals(licenceNumber, driver.licenceNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(name, licenceNumber);
+        return Objects.hash(id, name, licenceNumber);
     }
 }

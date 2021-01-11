@@ -63,13 +63,14 @@ public class Car {
             return false;
         }
         Car car = (Car) o;
-        return Objects.equals(model, car.model)
+        return Objects.equals(id, car.id)
+               && Objects.equals(model, car.model)
                && Objects.equals(manufacturer, car.manufacturer)
                && Objects.equals(driverList, car.driverList);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(model, manufacturer, driverList);
+        return Objects.hash(id, model, manufacturer, driverList);
     }
 }

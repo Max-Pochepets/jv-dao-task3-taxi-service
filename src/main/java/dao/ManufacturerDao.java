@@ -4,12 +4,15 @@ import Storage.Storage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import lib.Dao;
 import model.Manufacturer;
 
+@Dao
 public class ManufacturerDao implements ManufacturerDaoIntf {
     @Override
-    public void add(Manufacturer manufacturer) {
+    public Manufacturer add(Manufacturer manufacturer) {
         Storage.addManufacturer(manufacturer);
+        return manufacturer;
     }
     
     @Override
@@ -23,20 +26,19 @@ public class ManufacturerDao implements ManufacturerDaoIntf {
     }
     
     @Override
-    public void update(Long id, Manufacturer manufacturer) {
+    public Manufacturer update(Long id, Manufacturer manufacturer) {
+        Manufacturer oldValue = Storage.storage.get(id);
         Storage.storage.replace(id, manufacturer);
+        return oldValue;
     }
     
     @Override
-    public void delete(Long id) {
-        Storage.storage.remove(id);
+    public Manufacturer delete(Long id) {
+        return Storage.storage.remove(id);
     }
     
     @Override
-    public void delete(Manufacturer manufacturer) {
-        Optional<Manufacturer> first = Storage.storage.values().stream()
-                .filter(m -> m.equals(manufacturer))
-                .findFirst();
-        first.ifPresent(value -> Storage.storage.remove(value.getId()));
+    public Manufacturer delete(Manufacturer manufacturer) {
+        return delete(manufacturer.getId());
     }
 }
