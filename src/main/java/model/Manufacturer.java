@@ -45,13 +45,12 @@ public class Manufacturer {
             return false;
         }
         Manufacturer that = (Manufacturer) o;
-        return Objects.equals(id, that.id)
-               && Objects.equals(name, that.name)
+        return Objects.equals(name, that.name)
                && Objects.equals(country, that.country);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, country);
+        return Objects.hash(name, country);
     }
 }
