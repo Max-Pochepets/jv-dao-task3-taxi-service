@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Car {
@@ -8,10 +9,16 @@ public class Car {
     private Manufacturer manufacturer;
     private List<Driver> driverList;
     
-    public Car(String model, Manufacturer manufacturer, List<Driver> driverList) {
+    public Car(String model, Manufacturer manufacturer) {
         this.model = model;
         this.manufacturer = manufacturer;
-        this.driverList = driverList;
+    }
+    
+    public void addDriver(Driver driver) {
+        if (driverList == null) {
+            driverList = new ArrayList<>();
+        }
+        driverList.add(driver);
     }
     
     public Long getId() {
